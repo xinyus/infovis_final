@@ -21,22 +21,44 @@ svg.append("rect")
 
 var g = svg.append("g");
 
+year = '2013';
+pollu_selected = 'ozone';
+
 d3.json("us.json", function(error, us) {
   if (error) throw error;
+  
+  var maxNum;
+  var minNum;
 
-  g.append("g")
-      .attr("id", "states")
-    .selectAll("path")
-      .data(topojson.feature(us, us.objects.states).features)
-    .enter().append("path")
-      .attr("d", path)
-      .on("click", clicked);
+  d3.json("pollution_data.json", function(error, pollutant) {
+    if (error) throw error;
 
-  g.append("path")
-      .datum(topojson.mesh(us, us.objects.states, function(a, b) { return a !== b; }))
-      .attr("id", "state-borders")
-      .attr("d", path);
+    maxNum = pollutant.yearMax[pollu_selected];
+    
+    console.log(maxNum);
+    
+    colorMap = d3.scale.linear()
+                .domain([0, maxNum])
+                .range(['white', 'black']);
+
+    g.append("g")
+        .attr("id", "states")
+      .selectAll("path")
+        .data(topojson.feature(us, us.objects.states).features)
+      .enter().append("path")
+        .attr("d", path)
+        .style("fill", function(d){
+          if (d.id < 70) {
+            return colorMap(pollutant[year][d.id.toString()].pollutant[pollu_selected]);
+          }})
+        .on("click", clicked);
+
+    g.append("path")
+        .datum(topojson.mesh(us, us.objects.states, function(a, b) { return a !== b; }))
+        .attr("id", "state-borders")
+        .attr("d", path);
   });
+});
 
 function clicked(d) {
   var x, y, k;
