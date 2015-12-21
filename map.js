@@ -21,8 +21,7 @@ svg.append("rect")
 
 var g = svg.append("g");
 
-year = '2013';
-pollu_selected = 'ozone';
+pollu_selected = 'no';
 
 d3.json("us.json", function(error, us) {
   if (error) throw error;
@@ -32,36 +31,48 @@ d3.json("us.json", function(error, us) {
 
   d3.json("pollution_data.json", function(error, pollutant) {
     if (error) throw error;
+    
+    d3.select("#timeSlider").on("input", function() {
+      update(parseInt(this.value));
+    });
 
     maxNum = pollutant.yearMax[pollu_selected];
     
-    console.log(maxNum);
+    function update(year) {
+      colorMap = d3.scale.linear()
+                  .domain([0, maxNum])
+                  .range(['white', 'black']);
+      
+      g.selectAll("g").remove();
+      
+      g.append("g")
+          .attr("id", "states")
+        .selectAll("path")
+          .data(topojson.feature(us, us.objects.states).features)
+        .enter().append("path")
+          .attr("d", path)
+          .style("fill", function(d){
+            if (d.id < 70) {
+              return colorMap(pollutant[year][d.id.toString()].pollutant[pollu_selected]);
+            }})
+          .on("click", clicked);
+
+      // Draw white state borders
+      // g.append("path")
+      //     .datum(topojson.mesh(us, us.objects.states, function(a, b) { return a !== b; }))
+      //     .attr("id", "state-borders")
+      //     .attr("d", path);
+      d3.select("#timeSlider").property("value", year);
+    }
     
-    colorMap = d3.scale.linear()
-                .domain([0, maxNum])
-                .range(['white', 'black']);
-
-    g.append("g")
-        .attr("id", "states")
-      .selectAll("path")
-        .data(topojson.feature(us, us.objects.states).features)
-      .enter().append("path")
-        .attr("d", path)
-        .style("fill", function(d){
-          if (d.id < 70) {
-            return colorMap(pollutant[year][d.id.toString()].pollutant[pollu_selected]);
-          }})
-        .on("click", clicked);
-
-    g.append("path")
-        .datum(topojson.mesh(us, us.objects.states, function(a, b) { return a !== b; }))
-        .attr("id", "state-borders")
-        .attr("d", path);
+    update(2005);
   });
 });
 
 function clicked(d) {
   var x, y, k;
+  
+  console.log(d);
 
   if (d && centered !== d) {
     var centroid = path.centroid(d);
