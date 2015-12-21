@@ -57,11 +57,6 @@ d3.json("us.json", function(error, us) {
             }})
           .on("click", clicked);
 
-      // Draw white state borders
-      // g.append("path")
-      //     .datum(topojson.mesh(us, us.objects.states, function(a, b) { return a !== b; }))
-      //     .attr("id", "state-borders")
-      //     .attr("d", path);
       d3.select("#timeSlider").property("value", year);
     }
     
@@ -70,28 +65,14 @@ d3.json("us.json", function(error, us) {
 });
 
 function clicked(d) {
-  var x, y, k;
-  
   console.log(d);
 
   if (d && centered !== d) {
-    var centroid = path.centroid(d);
-    x = centroid[0];
-    y = centroid[1];
-    k = 4;
     centered = d;
   } else {
-    x = width / 2;
-    y = height / 2;
-    k = 1;
     centered = null;
   }
 
   g.selectAll("path")
-      .classed("active", centered && function(d) { return d === centered; });
-
-  g.transition()
-      .duration(750)
-      .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")scale(" + k + ")translate(" + -x + "," + -y + ")")
-      .style("stroke-width", 1.5 / k + "px");
+      .classed("state-borders", centered && function(d) { return d === centered; });
 }
