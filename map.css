@@ -3,9 +3,10 @@
   pointer-events: all;
 }
 
-/*#states {
-  fill: #aaa;
-}*/
+#timeSlider {
+  margin: 20px 0 10px 20px;
+  width: 500px;
+}
 
 #states .active {
   fill: orange;
