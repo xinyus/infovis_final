@@ -199,11 +199,12 @@ header {margin: 0; padding: 0;}
 	left:20em; top:-1.5em;
 }
 #headline_tag h1{
-	color:#a0a0a0;
+	color:#96cab3;
 	font-weight: 600;
 }
 .select-style{
-	top:3em;
+	position: relative;
+	top:1em;
 }
 
 /* ======================================
@@ -369,7 +370,7 @@ footer p{
  * PAGE: vis
  * ====================================== */
 
-.vis h1{margin-top: 1em;}
+.vis h1{margin-top: 1em;color:#a0a0a0;}
 .vis .main_text{margin-top: 1em;}
 .vis strong{color: #85c1a7;}
 .vis #navigation li a{color: gray;}
@@ -420,7 +421,7 @@ footer p{
 	background-attachment: fixed;
 	background-size: 100%; -moz-background-size: cover; -webkit-background-size: cover; -o-background-size: cover;
 	margin: 0 auto;
-	color: #a0a0a0;
+	color: gray;
 	clear: both;
 	position: relative;
 	overflow: hidden;
@@ -441,7 +442,7 @@ footer p{
 	background-position: center;
 	background-size: cover;
 	margin: 0 auto;
-	color: #a0a0a0;
+	color: gray;
 	clear: both;
 	position: relative;
 	overflow: hidden;

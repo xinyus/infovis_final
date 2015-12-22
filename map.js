@@ -10,6 +10,19 @@ d3.json("us.json", function(error, us) {
       d3.json("pollution_data.json", function(error, data){
         if (error) throw error;
       
+      //scroll sticky selector
+      var sliderScrollH = $( '#slider' ).position().top;
+        $(window).bind('scroll', function() {
+          var sliderHeight = sliderScrollH - 53;
+          console.log(sliderHeight);
+               if ($(window).scrollTop() > sliderHeight) {
+                   $('#slider').addClass('fixed');
+               }
+               else {
+                   $('#slider').removeClass('fixed');
+               }
+        });
+
         var selectedYear = 2005;
         var selectedState = 60;
         var pollu_selected = 'co';
@@ -35,8 +48,9 @@ d3.json("us.json", function(error, us) {
             }
             $( "#states" ).val(stateCode);
             stateName = getStateName(stateCode);
-            $("#headline_tag").find("h1").html(getStateName(stateCode));
+            $("#state_tag").html(getStateName(stateCode));
           	$('.linegraph_title').html(getStateName(stateCode));
+
             
             d3.select('#chart1').select('svg').remove();
             var co=[],
@@ -284,6 +298,7 @@ d3.json("us.json", function(error, us) {
           d3.select("#timeSlider").property("value", year);
           selectedYear = year;
           heatUpdate(selectedYear, selectedState);
+
         }
 
         update(2005);
@@ -318,6 +333,8 @@ d3.json("us.json", function(error, us) {
              .filter(function(d){return !(d.year == heatYear && d.state == heatStateId);})
              .remove();
           // flipTiles();
+          //update title
+          $('.heatgrid_year').html(selectedYear);
         }
 
         function flipTiles() {
