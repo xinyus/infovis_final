@@ -9,9 +9,7 @@ d3.json("us.json", function(error, us) {
 
       d3.json("pollution_data.json", function(error, data){
         if (error) throw error;
-<<<<<<< HEAD
-=======
-      
+
       //scroll sticky selector
       var sliderScrollH = $( '#slider' ).position().top;
         $(window).bind('scroll', function() {
@@ -24,7 +22,6 @@ d3.json("us.json", function(error, us) {
                    $('#slider').removeClass('fixed');
                }
         });
->>>>>>> weikaizh/develop
 
         var selectedYear = 2005;
         var selectedState = 60;
@@ -200,10 +197,7 @@ d3.json("us.json", function(error, us) {
 
         var arrPollutant = ["CO", "NO\u2082", "O\u2083", "PM\u2081\u2080", "PM\u2082.\u2085", "SO\u2082"];
         var arrMonth = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"];
-<<<<<<< HEAD
-=======
         var tooltipPollutant = {"co": "CO", "no2": "NO\u2082", "ozone": "O\u2083", "pm10": "PM\u2081\u2080", "pm25": "PM\u2082.\u2085", "so2": "SO\u2082"};
->>>>>>> weikaizh/develop
 
         var projection = d3.geo.albersUsa()
             .scale(1070)
@@ -256,16 +250,16 @@ d3.json("us.json", function(error, us) {
           .attr("transform", "translate("+ (gridSize * j + 23)+ ", -5)")
           .style("text-anchor", "middle");
         }
-        
+
         var color = ['#62b08d', '#F6F7B9', '#d6616b', 'black'];
         var colorId = [-1, -0.75, -0.5, -0.25, 0, 0.25, 1, 2];
         colorMap = d3.scale.linear()
                      .domain([-1, -0.5, 0.5, 10])
                      .range(color);
-        
+
         var legend = svg.selectAll(".legend")
               .data([].concat(colorId), function(d) { return d; });
-        
+
         legend.enter().append("g")
             .attr("class", "legend");
 
@@ -284,12 +278,12 @@ d3.json("us.json", function(error, us) {
           .style("fill", "black");
 
         legend.exit().remove();
-        
+
         var colorIdHeat = [-1, -0.5, 0, 0.5, 1, 5, 10];
-        
+
         var legendHeat = heatgrid.selectAll(".legend")
               .data([].concat(colorIdHeat), function(d) { return d; });
-        
+
         legendHeat.enter().append("g")
             .attr("class", "legend");
 
@@ -319,7 +313,7 @@ d3.json("us.json", function(error, us) {
                     .range(['#62b08d', '#F6F7B9','#d6616b', 'black']);
 
           g.selectAll("g").remove();
-          
+
           var div = d3.select("#map").append("div")
               .attr("class", "tooltip")
               .style("display", "none");
