@@ -88,17 +88,17 @@ h1{text-transform: none; font-weight: 200}
 #logo{font-family:'Raleway','Baskerville', Times, sans-serif;}
 
 ::selection {
-    background:#ff6868;
+    background:#96cab3;
     color:white;
 }
 
 ::-moz-selection {
-    background:#ff6868;
+    background:#96cab3;
     color:white;
 }
 
 ::-webkit-selection {
-    background:#ff6868;
+    background:#96cab3;
     color:white;
 }
 
