@@ -1,16 +1,250 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <meta charset="utf-8">
-  <title>US Air Pollution</title>
-  <link rel="stylesheet" type="text/css" href="map.css">
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<title>SI649 Group Project</title>
+	<link rel="icon" href="img/site_ico.ico" type="image/x-icon">
+	<link rel="stylesheet" href="style.css" media="all" />
+
+	<meta name = "viewport" content = "width=device-width, initial-scale = 1.0, maximum-scale=1.0, user-scalable=no">
+
+	<!-- Google Font -->
+	<link href="http://fonts.googleapis.com/css?family=Raleway:400" rel="stylesheet" type="text/css">
+
+	<!-- D3 -->
+  <link href="build/nv.d3.css" rel="stylesheet" type="text/css">
+	<link href="map.css" rel="stylesheet" type="text/css">
+
 </head>
 
-<body>
-  <input type="range" min="2005" max="2014" id="timeSlider">
-  <script src="http://d3js.org/d3.v3.min.js"></script>
-  <script src="http://d3js.org/topojson.v1.min.js"></script>
-  <script src="map.js"></script>
+<body class="vis">
+<!-- <div id="overlay" class="cover"> -->
+<a id = "00"></a>
+<!-- ======================================== -->
+<!-- HEADER-->
+<!-- ======================================== -->
+
+<header id="main-header">
+	<div class="nav_bg">
+	<nav id="navigation">
+
+	<div id="headline_tag">
+		<h1>U.S. Overview</h1>
+	</div>
+	<div class="nav_links">
+		<ul style="display:inline-block">
+			<li><a
+			 href="#">Select State</a></li>
+
+			 <select id="states" name="states" class="select-style">
+<option value="0">U.S.</option>
+<option value="1">Alabama</option>
+<option value="2">Alaska</option>
+<option value="4">Arizona</option>
+<option value="5">Arkansas</option>
+<option value="6">California</option>
+<option value="8">Colorado</option>
+<option value="9">Connecticut</option>
+<option value="10">Delaware</option>
+<option value="11">District of Columbia</option>
+<option value="12">Florida</option>
+<option value="13">Georgia</option>
+<option value="15">Hawaii</option>
+<option value="16">Idaho</option>
+<option value="17">Illinois</option>
+<option value="18">Indiana</option>
+<option value="19">Iowa</option>
+<option value="20">Kansas</option>
+<option value="21">Kentucky</option>
+<option value="22">Louisiana</option>
+<option value="23">Maine</option>
+<option value="24">Maryland</option>
+<option value="25">Massachusetts</option>
+<option value="26">Michigan</option>
+<option value="27">Minnesota</option>
+<option value="28">Mississippi</option>
+<option value="29">Missouri</option>
+<option value="30">Montana</option>
+<option value="31">Nebraska</option>
+<option value="32">Nevada</option>
+<option value="33">New Hampshire</option>
+<option value="34">New Jersey</option>
+<option value="35">New Mexico</option>
+<option value="36">New York</option>
+<option value="37">North Carolina</option>
+<option value="38">North Dakota</option>
+<option value="39">Ohio</option>
+<option value="40">Oklahoma</option>
+<option value="41">Oregon</option>
+<option value="42">Pennsylvania</option>
+<option value="44">Rhode Island</option>
+<option value="45">South Carolina</option>
+<option value="46">South Dakota</option>
+<option value="47">Tennessee</option>
+<option value="48">Texas</option>
+<option value="49">Utah</option>
+<option value="50">Vermont</option>
+<option value="51">Virginia</option>
+<option value="53">Washington</option>
+<option value="54">West Virginia</option>
+<option value="55">Wisconsin</option>
+<option value="56">Wyoming</option>
+</select>
+<!-- 			<li><a
+			 href="#overview">Overview</a></li>
+			<li><a
+			href="#region">Regional</a></li>
+			<li><a
+			href="#season">Seasonal</a></li> -->
+			<!-- <li><a
+			 class="contact_link" style="cursor: pointer" href="#">Contact</a></li>
+		 -->
+		</ul>
+	</div>
+	</nav>
+	</div>
+</header>
+
+<!-- ======================================== -->
+<!-- contents-->
+<!-- ======================================== -->
+
+<div id="contents" class="text-center">
+
+<div id= "vis_display">
+<div style="z-index: -999; position: fixed; top: 0"></div>
+	<div class="welcome">
+	<h1 class="homequote" style="color: #96cab3;">Visualizing Air Quality in U.S.</h1>
+	<p class="caption" style = "color: #a0a0a0; font-size: 1.5em" >Xinyu Sheng, Weikai Zhang, Mengtian Zhang</p>
+
+	</div>
+</div>
+
+
+<!-- ======================================== -->
+<!-- CHART 1-->
+<!-- ======================================== -->
+<section id="overview">
+<div class="content-container">
+
+<div class="content-container">
+	<h1>Pollutants: <strong class="linegraph_title">U.S. Overview</strong></h1>
+</div>
+<div class="main_text" style="width: 70%; margin: 0 auto 1.5em">
+	<p>&nbsp;&nbsp;&nbsp;&nbsp;</p>
+	<strong>Cras mattis consectetur</strong>  purus sit amet fermentum. Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit sit amet non magna.
+
+	<p style="margin-top: 1em">
+	Maecenas sed diam eget risus varius blandit sit amet non magna. Donec sed odio dui. <a class="in-text_link" href="#">Cras mattis</a> consectetur purus sit amet fermentum. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+
+	</p>
+</div>
+
+<div id="chart1" style="margin:0 auto; width:75%"></div>
+
+
+
+</div>
+</section>
+
+
+
+<section id="region">
+<!-- <div style="z-index: 0; background: url('img/Grass_dim.jpg') no-repeat; background-position: top center; width: 0; height: 0;background-size: cover; -moz-background-size: cover; -webkit-background-size: cover; -o-background-size: cover; top: 0"></div> -->
+<div class="content-container" >
+<h1 style="margin-top: 0; margin-bottom: 0.5em">Regional Destribution</h1>
+
+<div class="intro"  style="margin: 0 auto 1.5em; ">
+
+</div>
+<!-- <img src="img/02.png" style="width:75%"> -->
+
+	<div class="main_text" style="width: 70%; margin: 0 auto 1.5em">
+<p>
+Cras mattis consectetur purus sit amet fermentum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam porta sem malesuada magna mollis euismod. Donec id elit non mi porta gravida at eget metus.
+</p>
+	</div>
+
+<div>
+	<div id="map"></div>
+	<form id="pollutant-select">
+		<input type="radio" name="pollutant" value="co" checked>CO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="radio" name="pollutant" value="no2">NO<sub>2</sub>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="radio" name="pollutant" value="ozone">Ozone&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="radio" name="pollutant" value="pm10">PM<sub>10</sub>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="radio" name="pollutant" value="pm25">PM<sub>2.5</sub>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="radio" name="pollutant" value="so2">SO<sub>2</sub>
+	</form>
+</div>
+
+</div>
+</section>
+
+<input type="range" min="2005" max="2014" id="timeSlider">
+
+
+
+
+<section id="season">
+<div class="content-container" style="width: 90%;">
+
+<!-- <h1 style="margin-top: 0; margin-bottom: 1em">Criteria</h1> -->
+
+
+<h1 style = "margin-bottom: 1em">Seasonal Change</h1>
+
+<div class="main_text" style="width: 70%; margin: 0 auto 1.5em">
+  <p>
+  Curabitur blandit tempus porttitor. Donec ullamcorper nulla non metus auctor fringilla. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Etiam porta sem malesuada magna mollis euismod.
+  </p>
+
+</div>
+
+<div id="heatgrid" class="front" style="margin:auto; width:70%;"></div>
+
+ </div>
+</section>
+
+
+
+
+
+
+
+
+<section id="ending">
+<div class="content-container">
+
+<footer>All Rights Reserved | &copy; 2015</footer>
+</div>
+</section>
+
+
+<a href = "#00">
+	<div class = "to-top fade-element">
+	<p>top</p>
+	</div>
+</a>
+
+
+</div>
+
+
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.2/d3.min.js" charset="utf-8"></script>
+	<script src="http://d3js.org/d3.v3.min.js"></script>
+	<script src="http://d3js.org/topojson.v1.min.js"></script>
+	<script src="build/nv.d3.js"></script>
+
+	<!-- VIS -->
+	<!-- <script src="lineChart.js"></script> -->
+	<script src="map.js"></script>
+
+	<!-- main -->
+	<!-- <script type ="text/javascript" src = "javascript.js"></script> -->
+
 
 </body>
 </html>
