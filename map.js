@@ -204,7 +204,6 @@ d3.json("us.json", function(error, us) {
         updateLineChart(selectedState);
         
         $('input[name="pollutant"]:radio').on('click', function() {
-          console.log($(this).val());
           pollu_selected = $(this).val();
           update(selectedYear);
         });
@@ -215,8 +214,7 @@ d3.json("us.json", function(error, us) {
 
         var arrPollutant = ["CO", "NO\u2082", "O\u2083", "PM\u2081\u2080", "PM\u2082.\u2085", "SO\u2082"];
         var arrMonth = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"];
-
-        
+        var tooltipPollutant = {"co": "CO", "no2": "NO\u2082", "ozone": "O\u2083", "pm10": "PM\u2081\u2080", "pm25": "PM\u2082.\u2085", "so2": "SO\u2082"};
 
         var projection = d3.geo.albersUsa()
             .scale(1070)
@@ -237,7 +235,7 @@ d3.json("us.json", function(error, us) {
 
         var g = svg.append("g");
 
-        var margin = { top: 50, right: 0, bottom: 100, left: 50 },
+        var margin = { top: 70, right: 0, bottom: 100, left: 0 },
                  heatWidth = 650 - margin.left - margin.right,
                  heatHeight = 450 - margin.top - margin.bottom,
                  gridSize = Math.floor(heatWidth / 12),
@@ -269,6 +267,59 @@ d3.json("us.json", function(error, us) {
           .attr("transform", "translate("+ (gridSize * j + 23)+ ", -5)")
           .style("text-anchor", "middle");
         }
+        
+        var color = ['#62b08d', '#F6F7B9', '#d6616b', 'black'];
+        var colorId = [-1, -0.75, -0.5, -0.25, 0, 0.25, 1, 2];
+        colorMap = d3.scale.linear()
+                   .domain([-1, -0.5, 0.5, 10])
+                  //  .range(['#31a354', '#F6F7B9', '#d6616b']);
+                  .range(color);
+        
+        var legend = svg.selectAll(".legend")
+              .data([].concat(colorId), function(d) { return d; });
+        
+        legend.enter().append("g")
+            .attr("class", "legend");
+
+        legend.append("rect")
+          .attr("x", function(d, i) { return width * 0.45 + legendElementWidth * i; })
+          .attr("y", 0)
+          .attr("width", legendElementWidth)
+          .attr("height", gridSize / 4)
+          .style("fill", function(d) { return colorMap(d); });
+
+        legend.append("text")
+          .attr("class", "mono")
+          .text(function(d) { return d; })
+          .attr("x", function(d, i) { return width * 0.45 + legendElementWidth * i; })
+          .attr("y", gridSize/2)
+          .style("fill", "black");
+
+        legend.exit().remove();
+        
+        var colorIdHeat = [-1, -0.5, 0, 0.5, 1, 5, 10];
+        
+        var legendHeat = heatgrid.selectAll(".legend")
+              .data([].concat(colorIdHeat), function(d) { return d; });
+        
+        legendHeat.enter().append("g")
+            .attr("class", "legend");
+
+        legendHeat.append("rect")
+          .attr("x", function(d, i) { return heatWidth * 0.41 + legendElementWidth * i; })
+          .attr("y", -65)
+          .attr("width", legendElementWidth)
+          .attr("height", gridSize / 4)
+          .style("fill", function(d) { return colorMap(d); });
+
+        legendHeat.append("text")
+          .attr("class", "mono")
+          .text(function(d) { return d; })
+          .attr("x", function(d, i) { return heatWidth * 0.41 + legendElementWidth * i; })
+          .attr("y", -40)
+          .style("fill", "black");
+
+        legendHeat.exit().remove();
 
         d3.select("#timeSlider").on("input", function() {
           update(parseInt(this.value));
@@ -282,6 +333,10 @@ d3.json("us.json", function(error, us) {
                     .range(['#62b08d', '#F6F7B9','#d6616b', 'black']);
 
           g.selectAll("g").remove();
+          
+          var div = d3.select("#map").append("div")
+              .attr("class", "tooltip")
+              .style("display", "none");
 
           g.append("g")
               .attr("id", "states")
@@ -293,7 +348,25 @@ d3.json("us.json", function(error, us) {
                 if (d.id < 70) {
                   return colorMap(pollutant[year][d.id.toString()].pollutant[pollu_selected]);
                 }})
-              .on("click", clicked);
+              .on("click", clicked)
+              .on("mouseover", mouseover)
+              .on("mousemove", function(d){ return mousemove(d); })
+              .on("mouseout", mouseout);
+
+          function mouseover() {
+            div.style("display", "inline");
+          }
+
+          function mousemove(d) {
+            div
+                .html('<p class="state-name">' + states[d.id.toString()] + '<\p><p>' + tooltipPollutant[pollu_selected] + "  =  " + pollutant[selectedYear][d.id.toString()].pollutant[pollu_selected] + "</p>")
+                .style("left", String(d3.event.pageX - 34) + "px")
+                .style("top", String(d3.event.pageY - 1010) + "px");
+          }
+
+          function mouseout() {
+            div.style("display", "none");
+          }
 
           d3.select("#timeSlider").property("value", year);
           selectedYear = year;
@@ -304,7 +377,7 @@ d3.json("us.json", function(error, us) {
         update(2005);
 
         function heatUpdate(heatYear, heatStateId){
-          heatgrid.selectAll("rect").remove();
+          heatgrid.selectAll(".tile").remove();
 
           // if (side === 'front') {
         	// 	side = 'back';
@@ -337,42 +410,42 @@ d3.json("us.json", function(error, us) {
           $('.heatgrid_year').html(selectedYear);
         }
 
-        function flipTiles() {
-          var oldSide = d3.select('#heatgrid').attr('class'),
-        		newSide = '';
-
-        	if (oldSide == 'front') {
-        		newSide = 'back';
-        	} else {
-        		newSide = 'front';
-        	}
-
-        	var flipper = function(r, c, side) {
-        		return function() {
-        			var sel = '#r' + r + 'c' + c,
-        				rotateY = 'rotateY(180deg)';
-
-        			if (side === 'back') {
-        				rotateY = 'rotateY(0deg)';
-        			}
-        			// if (browser.browser === 'Safari' || browser.browser === 'Chrome') {
-        				d3.select(sel).style('-webkit-transform', rotateY);
-        			// } else {
-        			// 	d3.select(sel).select('.' + oldSide).classed('hidden', true);
-        			// 	d3.select(sel).select('.' + newSide).classed('hidden', false);
-        			// }
-
-        		};
-  	       };
-
-        	for (var c = 0; c < 13; c++) {
-        		for (var r = 0; r < 6; r++) {
-        			var side = d3.select('#heatgrid').attr('class');
-        			setTimeout(flipper(r, c, side), (c * 20) + (r * 20) + (Math.random() * 100));
-        		}
-        	}
-        	d3.select('#heatgrid').attr('class', newSide);
-        }
+        // function flipTiles() {
+        //   var oldSide = d3.select('#heatgrid').attr('class'),
+        // 		newSide = '';
+        // 
+        // 	if (oldSide == 'front') {
+        // 		newSide = 'back';
+        // 	} else {
+        // 		newSide = 'front';
+        // 	}
+        // 
+        // 	var flipper = function(r, c, side) {
+        // 		return function() {
+        // 			var sel = '#r' + r + 'c' + c,
+        // 				rotateY = 'rotateY(180deg)';
+        // 
+        // 			if (side === 'back') {
+        // 				rotateY = 'rotateY(0deg)';
+        // 			}
+        // 			// if (browser.browser === 'Safari' || browser.browser === 'Chrome') {
+        // 				d3.select(sel).style('-webkit-transform', rotateY);
+        // 			// } else {
+        // 			// 	d3.select(sel).select('.' + oldSide).classed('hidden', true);
+        // 			// 	d3.select(sel).select('.' + newSide).classed('hidden', false);
+        // 			// }
+        // 
+        // 		};
+  	    //    };
+        // 
+        // 	for (var c = 0; c < 13; c++) {
+        // 		for (var r = 0; r < 6; r++) {
+        // 			var side = d3.select('#heatgrid').attr('class');
+        // 			setTimeout(flipper(r, c, side), (c * 20) + (r * 20) + (Math.random() * 100));
+        // 		}
+        // 	}
+        // 	d3.select('#heatgrid').attr('class', newSide);
+        // }
         heatUpdate(2005,60);
         
         function clicked(d) {
