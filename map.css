@@ -6,6 +6,7 @@
 #timeSlider {
   margin: 20px 0 10px 0;
   width: 500px;
+
 }
 
 #states .state-borders {
@@ -40,6 +41,7 @@ form {
 #slider {
     width: 500px;
     margin: auto;
+      /*position:fixed;*/
 }
 
 #slider-label {
@@ -73,4 +75,14 @@ form {
 
 .tooltip .state-name {
     font-weight: bold;
+}
+
+.fixed{
+  position: fixed; 
+  top: -0.5em; 
+  left:30%;
+  width:400px;
+  height: 53px; 
+  z-index: 9999;
+  opacity:0.8;
 }
