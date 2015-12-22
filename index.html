@@ -123,15 +123,27 @@
 </div>
 <div class="main_text" style="width: 70%; margin: 0 auto 1.5em">
 	<p>&nbsp;&nbsp;&nbsp;&nbsp;</p>
-	<strong>Cras mattis consectetur</strong>  purus sit amet fermentum. Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit sit amet non magna.
+	The last ten years has witnessed the continuous improvement of air quality in the U.S. We measure the level of pollution by a certain pollutant’s percentage value above / below the National standard. 
 
 	<p style="margin-top: 1em">
-	Maecenas sed diam eget risus varius blandit sit amet non magna. Donec sed odio dui. <a class="in-text_link" href="#">Cras mattis</a> consectetur purus sit amet fermentum. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-
+	On national average, almost all pollutants are under the national standard over the past ten years. Most pollutants are gradually decreasing through time (except PM10, which has an over 10% increase since 2009).
 	</p>
+
+	<p style="margin-top: 1em; color:#b9b9b9">
+	You can interact with the line graph to further explore the overview pollutant rate in specific states. Select the state in the selection box on the top right. Click on the legends to filter out sets of pollutants.
+	</p>
+
+
 </div>
 
+
 <div id="chart1" style="margin:0 auto; width:75%"></div>
+
+<div class="main_text" style="width: 70%; margin: -1em auto 1.5em">
+	<p style="margin-top: 1em">
+	Down to the state level, we can see some prominent figures in pollution levels. For example, The annual average PM10 value in Texas reached over 220% above national standard, which was presumably due to the tornadoes raising particles in the air. Hawaii has prominent and highly variant SO2 rates, which results from the frequent volcanic activities specific to the region.
+	</p>
+</div>
 
 </div>
 </section>
@@ -145,7 +157,13 @@
 </div>
 	<div class="main_text" style="width: 70%; margin: 0 auto 1.5em">
 <p>
-Cras mattis consectetur purus sit amet fermentum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam porta sem malesuada magna mollis euismod. Donec id elit non mi porta gravida at eget metus.
+From the heat map we can see the regional distribution patterns of the major pollutants. We can tell an overall improvement in air quality by the number of green blocks increasing. 
+</p>
+<p style="margin-top: 1em">
+The distribution of NO2 and O3 have a similar distribution pattern, with southern regions slightly more severe than the northern ones. The PM2.5 rate in eastern regions has been on constant decrease since 2005, yet still remain a high value along the west coast.
+</p>
+<p style="margin-top: 1em; color:#b9b9b9">
+Select a pollutant in the filters, and drag the time slider to show heat map of the average pollution level in the selected year. The values of pollution rates are the percentage above/below EPA national standards. Green means lower than national standards and red means higher.
 </p>
 	</div>
 
@@ -160,6 +178,8 @@ Cras mattis consectetur purus sit amet fermentum. Lorem ipsum dolor sit amet, co
 		<input type="radio" name="pollutant" value="so2">SO<sub>2</sub>
 	</form>
 </div>
+
+
 
 </div>
 </section>
@@ -188,12 +208,40 @@ Cras mattis consectetur purus sit amet fermentum. Lorem ipsum dolor sit amet, co
 
 <div class="main_text" style="width: 70%; margin: 0 auto 1.5em">
   <p>
-  Curabitur blandit tempus porttitor. Donec ullamcorper nulla non metus auctor fringilla. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Etiam porta sem malesuada magna mollis euismod.
+  Some pollutants have a distinct pattern in seasonal distribution. The level of Ozone is higher during spring and summer than other time of the year, largely due to the fact that heat and sunshine are required to produce Ozone. The levels of CO, NO2, and SO2 tend to distribute evenly across months. 
   </p>
+  <p style="margin-top: 1em; color:#b9b9b9">
+Select a state in the selection box on the top-right corner or by directly clicking on the map, and drag the time slider above to show monthly average pollutant values in the given year and state. 
+</p>
 
 </div>
 
 <div id="heatgrid" class="front" style="margin:auto; width:70%;"></div>
+
+<div class="main_text" style="width: 70%; margin: -1em auto 1.5em">
+  <p>
+  From the heat grid we can also see some of the severe pollution instances in the ten year range. The PM10 rate of Navada in Feb, 2014 reached over 10 times the national standard. California, which in general has a higher PM10 and PM2.5 rate than other states, reached its peak value in particle pollutoin in Nov and Dec, 2014. 
+  </p>
+</div>
+
+
+
+<div class="main_text" style="width: 70%; margin: 3em auto 1.5em">
+  <p style="margin-top: 1em; color:#b9b9b9">
+<strong>Notes:</strong>
+</p>
+ <p style="color:#b9b9b9">
+- The data used in our visualizations are retrieved from <a class="in-text_link" href="http://www3.epa.gov/airquality/airdata/ad_data.html">United States Environmental Protection Agency</a>.
+</p>
+ <p style=" color:#b9b9b9">
+- The percentage value of pollution rates are calculated based on<a class="in-text_link" href="http://www3.epa.gov/ttn/naaqs/criteria.html">EPA National Standards</a>.
+</p>
+ <p style=" color:#b9b9b9">
+- In the heatmap, missing data are represented by gray color.
+</p>
+</div>
+
+
 
  </div>
 </section>

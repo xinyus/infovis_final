@@ -86,3 +86,25 @@ form {
   z-index: 9999;
   opacity:0.8;
 }
+
+.tooltip {
+  position: absolute;
+  text-align: left;
+  width: 95px;
+  height: 40px;
+  padding: 8px;
+  margin-top: -20px;
+  font: 13px sans-serif;
+  color: gray;
+  background: white;
+  border: 1px solid lightgray;
+  pointer-events: none;
+}
+
+.tooltip p {
+    margin-bottom: 9px;
+}
+
+.tooltip .state-name {
+    font-weight: bold;
+}
