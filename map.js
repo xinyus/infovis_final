@@ -9,6 +9,22 @@ d3.json("us.json", function(error, us) {
 
       d3.json("pollution_data.json", function(error, data){
         if (error) throw error;
+<<<<<<< HEAD
+=======
+      
+      //scroll sticky selector
+      var sliderScrollH = $( '#slider' ).position().top;
+        $(window).bind('scroll', function() {
+          var sliderHeight = sliderScrollH - 53;
+          console.log(sliderHeight);
+               if ($(window).scrollTop() > sliderHeight) {
+                   $('#slider').addClass('fixed');
+               }
+               else {
+                   $('#slider').removeClass('fixed');
+               }
+        });
+>>>>>>> weikaizh/develop
 
         var selectedYear = 2005;
         var selectedState = 60;
@@ -35,7 +51,7 @@ d3.json("us.json", function(error, us) {
             }
             $( "#states" ).val(stateCode);
             stateName = getStateName(stateCode);
-            $("#headline_tag").find("h1").html(getStateName(stateCode));
+            $("#state_tag").html(getStateName(stateCode));
           	$('.linegraph_title').html(getStateName(stateCode));
 
             d3.select('#chart1').select('svg').remove();
@@ -56,27 +72,21 @@ d3.json("us.json", function(error, us) {
                     switch(paraName){
                         case "co":
                             sum += Number(value.pollutant.co);
-                            //console.log(key, value.pollutant.co);
                             break;
                         case "no2":
                             sum += Number(value.pollutant.no2);
-                            //console.log(key, value.pollutant.no2);
                             break;
                         case "ozone":
                             sum += Number(value.pollutant.ozone);
-                            //console.log(key, value.pollutant.ozone);
                             break;
                         case "pm25":
                             sum += Number(value.pollutant.pm25);
-                            //console.log(key, value.pollutant.pm25);
                             break;
                         case "pm10":
                             sum += Number(value.pollutant.pm10);
-                            //console.log(key, value.pollutant.pm10);
                             break;
                         case "so2":
                             sum += Number(value.pollutant.so2);
-                            //console.log(key, value.pollutant.so2);
                             break;
                     }
                 });
@@ -137,7 +147,6 @@ d3.json("us.json", function(error, us) {
 
             if (stateCode === 0){
                 for(i=2005; i<= 2014; i++) {
-                    //console.log(i, calcAve("co",i));
                     co.push({x:i, y: calcAve("co", i)});
                     no2.push({x:i, y: calcAve("no2", i)});
                     ozone.push({x:i, y: calcAve("ozone", i)});
@@ -147,7 +156,6 @@ d3.json("us.json", function(error, us) {
                 }
             } else {
                 for(i=2005; i<= 2014; i++) {
-                    //standard.push({x:i, y:0});
                     co.push({x:i, y: data[i][stateCode].pollutant.co});
                     ozone.push({x:i, y: data[i][stateCode].pollutant.ozone});
                     no2.push({x:i, y: data[i][stateCode].pollutant.no2});
@@ -166,12 +174,6 @@ d3.json("us.json", function(error, us) {
                         useInteractiveGuideline: true
                     })
                 ;
-                // chart sub-models (ie. xAxis, yAxis, etc) when accessed directly, return themselves, not the parent chart, so need to chain separately
-                // chart.xAxis
-                    //.axisLabel("Year")
-                    // .tickFormat(d3.format(',.1f'))
-                    // .staggerLabels(true)
-                // ;
                 chart.yAxis
                     .axisLabel('Ratio to National Standard')
                     .tickFormat(d3.format('%'));
@@ -179,8 +181,6 @@ d3.json("us.json", function(error, us) {
                 var svg = d3.select('#chart1').append('svg')
                     .datum(pollutants())
                     .call(chart);
-                // d3.select(".nv-legendWrap")
-                //     .attr("transform", "translate(90,340)");
                 nv.utils.windowResize(chart.update);
                 return chart;
             });//add chart callback ends
@@ -190,7 +190,6 @@ d3.json("us.json", function(error, us) {
         updateLineChart(selectedState);
 
         $('input[name="pollutant"]:radio').on('click', function() {
-          console.log($(this).val());
           pollu_selected = $(this).val();
           update(selectedYear);
         });
@@ -201,6 +200,10 @@ d3.json("us.json", function(error, us) {
 
         var arrPollutant = ["CO", "NO\u2082", "O\u2083", "PM\u2081\u2080", "PM\u2082.\u2085", "SO\u2082"];
         var arrMonth = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"];
+<<<<<<< HEAD
+=======
+        var tooltipPollutant = {"co": "CO", "no2": "NO\u2082", "ozone": "O\u2083", "pm10": "PM\u2081\u2080", "pm25": "PM\u2082.\u2085", "so2": "SO\u2082"};
+>>>>>>> weikaizh/develop
 
         var projection = d3.geo.albersUsa()
             .scale(1070)
@@ -221,7 +224,7 @@ d3.json("us.json", function(error, us) {
 
         var g = svg.append("g");
 
-        var margin = { top: 50, right: 0, bottom: 100, left: 50 },
+        var margin = { top: 70, right: 0, bottom: 100, left: 30 },
                  heatWidth = 650 - margin.left - margin.right,
                  heatHeight = 450 - margin.top - margin.bottom,
                  gridSize = Math.floor(heatWidth / 12),
@@ -253,19 +256,73 @@ d3.json("us.json", function(error, us) {
           .attr("transform", "translate("+ (gridSize * j + 23)+ ", -5)")
           .style("text-anchor", "middle");
         }
+        
+        var color = ['#62b08d', '#F6F7B9', '#d6616b', 'black'];
+        var colorId = [-1, -0.75, -0.5, -0.25, 0, 0.25, 1, 2];
+        colorMap = d3.scale.linear()
+                     .domain([-1, -0.5, 0.5, 10])
+                     .range(color);
+        
+        var legend = svg.selectAll(".legend")
+              .data([].concat(colorId), function(d) { return d; });
+        
+        legend.enter().append("g")
+            .attr("class", "legend");
+
+        legend.append("rect")
+          .attr("x", function(d, i) { return width * 0.45 + legendElementWidth * i; })
+          .attr("y", 0)
+          .attr("width", legendElementWidth)
+          .attr("height", gridSize / 4)
+          .style("fill", function(d) { return colorMap(d); });
+
+        legend.append("text")
+          .attr("class", "mono")
+          .text(function(d) { return d; })
+          .attr("x", function(d, i) { return width * 0.45 + legendElementWidth * i; })
+          .attr("y", gridSize/2)
+          .style("fill", "black");
+
+        legend.exit().remove();
+        
+        var colorIdHeat = [-1, -0.5, 0, 0.5, 1, 5, 10];
+        
+        var legendHeat = heatgrid.selectAll(".legend")
+              .data([].concat(colorIdHeat), function(d) { return d; });
+        
+        legendHeat.enter().append("g")
+            .attr("class", "legend");
+
+        legendHeat.append("rect")
+          .attr("x", function(d, i) { return heatWidth * 0.41 + legendElementWidth * i; })
+          .attr("y", -65)
+          .attr("width", legendElementWidth)
+          .attr("height", gridSize / 4)
+          .style("fill", function(d) { return colorMap(d); });
+
+        legendHeat.append("text")
+          .attr("class", "mono")
+          .text(function(d) { return d; })
+          .attr("x", function(d, i) { return heatWidth * 0.41 + legendElementWidth * i; })
+          .attr("y", -40)
+          .style("fill", "black");
+
+        legendHeat.exit().remove();
 
         d3.select("#timeSlider").on("input", function() {
           update(parseInt(this.value));
-          // heatUpdate();
         });
 
         function update(year) {
           colorMap = d3.scale.linear()
                      .domain([-1, -0.5, 0.5, 10])
-                    //  .range(['#31a354', '#F6F7B9', '#d6616b']);
                     .range(['#62b08d', '#F6F7B9','#d6616b', 'black']);
 
           g.selectAll("g").remove();
+          
+          var div = d3.select("#map").append("div")
+              .attr("class", "tooltip")
+              .style("display", "none");
 
           g.append("g")
               .attr("id", "states")
@@ -277,23 +334,36 @@ d3.json("us.json", function(error, us) {
                 if (d.id < 70) {
                   return colorMap(pollutant[year][d.id.toString()].pollutant[pollu_selected]);
                 }})
-              .on("click", clicked);
+              .on("click", clicked)
+              .on("mouseover", mouseover)
+              .on("mousemove", function(d){ return mousemove(d); })
+              .on("mouseout", mouseout);
+
+          function mouseover() {
+            div.style("display", "inline");
+          }
+
+          function mousemove(d) {
+            div
+                .html('<p class="state-name">' + states[d.id.toString()] + '<\p><p>' + tooltipPollutant[pollu_selected] + "  =  " + pollutant[selectedYear][d.id.toString()].pollutant[pollu_selected] + "</p>")
+                .style("left", String(d3.event.pageX - 34) + "px")
+                .style("top", String(d3.event.pageY - 1010) + "px");
+          }
+
+          function mouseout() {
+            div.style("display", "none");
+          }
 
           d3.select("#timeSlider").property("value", year);
           selectedYear = year;
           heatUpdate(selectedYear, selectedState);
+
         }
 
         update(2005);
 
         function heatUpdate(heatYear, heatStateId){
-          heatgrid.selectAll("rect").remove();
-
-          // if (side === 'front') {
-        	// 	side = 'back';
-        	// } else {
-        	// 	side = 'front';
-        	// }
+          heatgrid.selectAll(".tile").remove();
 
           heatgrid.selectAll(".tile")
              .data(heatData)
@@ -315,45 +385,9 @@ d3.json("us.json", function(error, us) {
                }})
              .filter(function(d){return !(d.year == heatYear && d.state == heatStateId);})
              .remove();
-          // flipTiles();
+          $('.heatgrid_year').html(selectedYear);
         }
 
-        function flipTiles() {
-          var oldSide = d3.select('#heatgrid').attr('class'),
-        		newSide = '';
-
-        	if (oldSide == 'front') {
-        		newSide = 'back';
-        	} else {
-        		newSide = 'front';
-        	}
-
-        	var flipper = function(r, c, side) {
-        		return function() {
-        			var sel = '#r' + r + 'c' + c,
-        				rotateY = 'rotateY(180deg)';
-
-        			if (side === 'back') {
-        				rotateY = 'rotateY(0deg)';
-        			}
-        			// if (browser.browser === 'Safari' || browser.browser === 'Chrome') {
-        				d3.select(sel).style('-webkit-transform', rotateY);
-        			// } else {
-        			// 	d3.select(sel).select('.' + oldSide).classed('hidden', true);
-        			// 	d3.select(sel).select('.' + newSide).classed('hidden', false);
-        			// }
-
-        		};
-  	       };
-
-        	for (var c = 0; c < 13; c++) {
-        		for (var r = 0; r < 6; r++) {
-        			var side = d3.select('#heatgrid').attr('class');
-        			setTimeout(flipper(r, c, side), (c * 20) + (r * 20) + (Math.random() * 100));
-        		}
-        	}
-        	d3.select('#heatgrid').attr('class', newSide);
-        }
         heatUpdate(2005,60);
 
         function clicked(d) {

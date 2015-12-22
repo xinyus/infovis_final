@@ -20,7 +20,6 @@
 </head>
 
 <body class="vis">
-<!-- <div id="overlay" class="cover"> -->
 <a id = "00"></a>
 <!-- ======================================== -->
 <!-- HEADER-->
@@ -31,7 +30,7 @@
 	<nav id="navigation">
 
 	<div id="headline_tag">
-		<h1>U.S. Overview</h1>
+		<h1><span id="state_tag">U.S.</span></h1>
 	</div>
 	<div class="nav_links">
 		<ul style="display:inline-block">
@@ -92,15 +91,6 @@
 <option value="55">Wisconsin</option>
 <option value="56">Wyoming</option>
 </select>
-<!-- 			<li><a
-			 href="#overview">Overview</a></li>
-			<li><a
-			href="#region">Regional</a></li>
-			<li><a
-			href="#season">Seasonal</a></li> -->
-			<!-- <li><a
-			 class="contact_link" style="cursor: pointer" href="#">Contact</a></li>
-		 -->
 		</ul>
 	</div>
 	</nav>
@@ -116,12 +106,11 @@
 <div id= "vis_display">
 <div style="z-index: -999; position: fixed; top: 0"></div>
 	<div class="welcome">
-	<h1 class="homequote" style="color: #96cab3;">Visualizing Air Quality in U.S.</h1>
+	<h1 class="homequote" style="color: #96cab3; font-weight: bold;">Visualizing Air Quality in U.S.</h1>
 	<p class="caption" style = "color: #a0a0a0; font-size: 1.5em" >Xinyu Sheng, Weikai Zhang, Mengtian Zhang</p>
 
 	</div>
 </div>
-
 
 <!-- ======================================== -->
 <!-- CHART 1-->
@@ -130,7 +119,7 @@
 <div class="content-container">
 
 <div class="content-container">
-	<h1>Pollutants in <strong class="linegraph_title">U.S. Overview</strong></h1>
+	<h1>All Pollutants in <strong class="linegraph_title">U.S.</strong></h1>
 </div>
 <div class="main_text" style="width: 70%; margin: 0 auto 1.5em">
 	<p>&nbsp;&nbsp;&nbsp;&nbsp;</p>
@@ -144,23 +133,16 @@
 
 <div id="chart1" style="margin:0 auto; width:75%"></div>
 
-
-
 </div>
 </section>
 
-
-
 <section id="region">
-<!-- <div style="z-index: 0; background: url('img/Grass_dim.jpg') no-repeat; background-position: top center; width: 0; height: 0;background-size: cover; -moz-background-size: cover; -webkit-background-size: cover; -o-background-size: cover; top: 0"></div> -->
 <div class="content-container" >
 <h1 style="margin-top: 0; margin-bottom: 0.5em">Regional Destribution</h1>
 
 <div class="intro"  style="margin: 0 auto 1.5em; ">
 
 </div>
-<!-- <img src="img/02.png" style="width:75%"> -->
-
 	<div class="main_text" style="width: 70%; margin: 0 auto 1.5em">
 <p>
 Cras mattis consectetur purus sit amet fermentum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam porta sem malesuada magna mollis euismod. Donec id elit non mi porta gravida at eget metus.
@@ -199,15 +181,10 @@ Cras mattis consectetur purus sit amet fermentum. Lorem ipsum dolor sit amet, co
 	</div>
 </div>
 
-
-
 <section id="season">
 <div class="content-container" style="width: 90%;">
 
-<!-- <h1 style="margin-top: 0; margin-bottom: 1em">Criteria</h1> -->
-
-
-<h1 style = "margin-bottom: 1em">Seasonal Change</h1>
+<h1 style = "margin-bottom: 1em">Seasonal Change in <strong class="linegraph_title">U.S.</strong> <strong class="heatgrid_year">2005</strong></h1>
 
 <div class="main_text" style="width: 70%; margin: 0 auto 1.5em">
   <p>
@@ -221,13 +198,6 @@ Cras mattis consectetur purus sit amet fermentum. Lorem ipsum dolor sit amet, co
  </div>
 </section>
 
-
-
-
-
-
-
-
 <section id="ending">
 <div class="content-container">
 
@@ -235,16 +205,13 @@ Cras mattis consectetur purus sit amet fermentum. Lorem ipsum dolor sit amet, co
 </div>
 </section>
 
-
 <a href = "#00">
 	<div class = "to-top fade-element">
 	<p>top</p>
 	</div>
 </a>
 
-
 </div>
-
 
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.2/d3.min.js" charset="utf-8"></script>
@@ -253,12 +220,7 @@ Cras mattis consectetur purus sit amet fermentum. Lorem ipsum dolor sit amet, co
 	<script src="build/nv.d3.js"></script>
 
 	<!-- VIS -->
-	<!-- <script src="lineChart.js"></script> -->
 	<script src="map.js"></script>
-
-	<!-- main -->
-	<!-- <script type ="text/javascript" src = "javascript.js"></script> -->
-
 
 </body>
 </html>

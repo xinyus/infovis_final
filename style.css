@@ -86,8 +86,6 @@ body{font-family: 'Avenir','Baskerville', Times, sans-serif;font-size: 65%; font
 .homequote, h1, h2, .button, footer{font-family:'raleway', Times, sans-serif;}
 h1{text-transform: none; font-weight: 200}
 #logo{font-family:'Raleway','Baskerville', Times, sans-serif;}
-/*ol, ul {list-style: none; margin: 0; padding: 0;}
-ul, li {list-style-type: none;}*/
 
 ::selection {
     background:#ff6868;
@@ -103,7 +101,6 @@ ul, li {list-style-type: none;}*/
     background:#ff6868;
     color:white;
 }
-
 
 /* ======================================
  * CONTAINER
@@ -133,7 +130,6 @@ ul, li {list-style-type: none;}*/
  * HEADER
  * ====================================== */
 
-
 header {margin: 0; padding: 0;}
 
 #main-header {position: relative;
@@ -141,7 +137,6 @@ header {margin: 0; padding: 0;}
 	z-index: 1000;
 	margin: 0;
 }
-
 
 /* ======================================
  * 3.2 NAVIGATION
@@ -156,6 +151,7 @@ header {margin: 0; padding: 0;}
 	border-bottom: 1px solid #00c989;
 	height:100%;
 }
+
 #navigation {
 	float: right;
 	padding-right: 2em;
@@ -163,6 +159,7 @@ header {margin: 0; padding: 0;}
 	width: 100%;
 	padding-left: 6em;
 }
+
 .nav_links{
 	position:absolute;
 	right:0; top:1em;
@@ -172,6 +169,7 @@ header {margin: 0; padding: 0;}
 	float: left;
 	padding: 0.5em 0.5em;
 }
+
 #navigation li:first-child {
 	margin-left: 0;
 	border: none;
@@ -185,10 +183,12 @@ header {margin: 0; padding: 0;}
 	transition: all 0.3s;
 	padding: 0; margin: 0;
 }
+
 #navigation ul li a.current{
 	color: #ff8383;
 	text-shadow: 1px 1px 1px #2a2a2a;
 }
+
 #navigation li a:hover, #navigation li a:active, #navigation li a:focus{
 	color: #ff6868 !important;
 /*	#ff8383*/
@@ -196,40 +196,39 @@ header {margin: 0; padding: 0;}
 
 #headline_tag{
 	position: absolute;
-	left:20em; top:-1.5em;
+	left:12%; top:-1.5em;
 }
+
 #headline_tag h1{
-	color:#a0a0a0;
+	color:#96cab3;
 	font-weight: 600;
 }
+
 .select-style{
-	top:3em;
+	position: relative;
+	top:1em;
 }
 
 /* ======================================
  * INFOVIS
  * ====================================== */
 
-        svg {
-            display: block;
-        }
-        html, body, #chart1, svg {
-            margin: 0px;
-            padding: 0px;
-            padding-bottom:3em;
-            padding-top: -1em;
-            height: 400px;
-            width: 100%;
-            d-index:999;
-        }
-
-
+svg {
+    display: block;
+}
+html, body, #chart1, svg {
+    margin: 0px;
+    padding: 0px;
+    padding-bottom:3em;
+    padding-top: -1em;
+    height: 400px;
+    width: 100%;
+    d-index:999;
+}
 
 /* ======================================
  * HOME DISPLAY
  * ====================================== */
-
-
 
 .welcome{
 	position: absolute;
@@ -256,11 +255,9 @@ strong{
 	color: #96cab3;
 }
 
-
 /* ======================================
  * RECENT WORK
  * ====================================== */
-
 
 .button{
 	margin: 4em auto 10em auto;
@@ -363,13 +360,11 @@ footer p{
 	width: 100%; height: 50%; display: block;
 }
 
-
-
 /* ======================================
  * PAGE: vis
  * ====================================== */
 
-.vis h1{margin-top: 1em;}
+.vis h1{margin-top: 1em;color:#a0a0a0;}
 .vis .main_text{margin-top: 1em;}
 .vis strong{color: #85c1a7;}
 .vis #navigation li a{color: gray;}
@@ -380,12 +375,6 @@ footer p{
 .green p{color: #00c989;}
 .green:hover {background-color: #00c989;}
 
-/*.seed{
-	background: url("img/Grass_dim.jpg") no-repeat;
-	background-position: top center;
-	background-attachment: fixed;
-	background-size: cover; -moz-background-size: cover; -webkit-background-size: cover; -o-background-size: cover;
-}*/
 .vis #vis_display{
 	background-color:rgba(232,233,216,0.4);
 	background-position: top center;
@@ -403,32 +392,22 @@ footer p{
 	clear: both;
 	position: relative;
 	z-index: 900;
-/*	height: 60%;*/
 	padding-bottom: 0em;
 	overflow: hidden;
 }
 .vis #region {
-/*	background-color:#50a387; */
-/*	background: url("img/Grass_dim.jpg") no-repeat;
-	background-position: top center;
-	background-attachment: fixed !important;
-	background-size: cover; -moz-background-size: cover; -webkit-background-size: cover; -o-background-size: cover;
-*/
-/*	background-color:rgba(244,241,236,0.5);*/
 	background-color:white;
 	background-position: center;
 	background-attachment: fixed;
 	background-size: 100%; -moz-background-size: cover; -webkit-background-size: cover; -o-background-size: cover;
 	margin: 0 auto;
-	color: #a0a0a0;
+	color: gray;
 	clear: both;
 	position: relative;
 	overflow: hidden;
 	padding-bottom: 0em;
 	padding-top: 1.5em;
 	z-index: 901;
-/*	border-top: 1px solid #00c989;
-*//*	background: none;*/
 }
 
 
@@ -441,31 +420,15 @@ footer p{
 	background-position: center;
 	background-size: cover;
 	margin: 0 auto;
-	color: #a0a0a0;
+	color: gray;
 	clear: both;
 	position: relative;
 	overflow: hidden;
 	padding-top: 0em;
 	padding-bottom:3em;
 	z-index: 901;
-/*	background-color:rgba(232,233,216,0.4);
-	color: white;
-	background-size: cover;
-	position: relative;*/
-/*	margin: 0 auto;
-	color: white;
-	clear: both;
-
-
-	padding-bottom: 3em;
-	padding-top: 0;*/
 }
 .vis #process{
-/*	background: url("img/cultureshock_bg.jpg") no-repeat;
-	background-position: top center;
-	background-attachment: fixed !important;
-	background-size: cover; -moz-background-size: cover; -webkit-background-size: cover; -o-background-size: cover;
-	*/
 	background-color:white;
 	color: gray;
 	width: 100%;
@@ -474,9 +437,6 @@ footer p{
 	z-index: 0;
 }
 .vis #ending{padding-top: 0; height:25%;background-color: #96cab3}
-
-
-
 
 /* ======================================
  * MEDIA QUERIES
@@ -512,13 +472,7 @@ h1{font-size : 2.25em;}
 
 }
 
-
-
-
-
-
 @media screen and (max-width: 768px) {
-
 
 .homequote{font-size : 2.5em;}
 .caption{font-size: 1.5em;}
@@ -594,7 +548,6 @@ footer p{display: block; font-size: 1em}
 }
 
 @media screen and (max-width: 450px) {
-
 
 #navigation ul li a{font-size: 1.2em;}
 .homequote{font-size : 2em;}
