@@ -47,24 +47,13 @@ form {
 #slider-label {
     width: 550px;
     margin-left: -24px;
-<<<<<<< HEAD
-<<<<<<< HEAD
-    margin-top:-10px;
-=======
     margin-top: -10px;
->>>>>>> weikaizh/develop
-=======
-    margin-top: -10px;
->>>>>>> weikaizh/develop
 }
 
 #slider label {
     display: inline-block;
     margin-right: 30px;
 }
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 
 .tooltip {
   position: absolute;
@@ -88,7 +77,6 @@ form {
     font-weight: bold;
 }
 
->>>>>>> weikaizh/develop
 .fixed{
   position: fixed; 
   top: -0.5em; 
@@ -97,7 +85,7 @@ form {
   height: 53px; 
   z-index: 9999;
   opacity:0.8;
-=======
+}
 
 .tooltip {
   position: absolute;
@@ -119,5 +107,4 @@ form {
 
 .tooltip .state-name {
     font-weight: bold;
->>>>>>> weikaizh/develop
 }

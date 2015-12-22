@@ -218,11 +218,7 @@ d3.json("us.json", function(error, us) {
 
         var g = svg.append("g");
 
-<<<<<<< HEAD
-        var margin = { top: 70, right: 0, bottom: 100, left: 0 },
-=======
         var margin = { top: 70, right: 0, bottom: 100, left: 30 },
->>>>>>> weikaizh/develop
                  heatWidth = 650 - margin.left - margin.right,
                  heatHeight = 450 - margin.top - margin.bottom,
                  gridSize = Math.floor(heatWidth / 12),
@@ -258,14 +254,8 @@ d3.json("us.json", function(error, us) {
         var color = ['#62b08d', '#F6F7B9', '#d6616b', 'black'];
         var colorId = [-1, -0.75, -0.5, -0.25, 0, 0.25, 1, 2];
         colorMap = d3.scale.linear()
-<<<<<<< HEAD
-                   .domain([-1, -0.5, 0.5, 10])
-                  //  .range(['#31a354', '#F6F7B9', '#d6616b']);
-                  .range(color);
-=======
                      .domain([-1, -0.5, 0.5, 10])
                      .range(color);
->>>>>>> weikaizh/develop
         
         var legend = svg.selectAll(".legend")
               .data([].concat(colorId), function(d) { return d; });
@@ -368,15 +358,6 @@ d3.json("us.json", function(error, us) {
 
         function heatUpdate(heatYear, heatStateId){
           heatgrid.selectAll(".tile").remove();
-<<<<<<< HEAD
-
-          // if (side === 'front') {
-        	// 	side = 'back';
-        	// } else {
-        	// 	side = 'front';
-        	// }
-=======
->>>>>>> weikaizh/develop
 
           heatgrid.selectAll(".tile")
              .data(heatData)
@@ -401,45 +382,6 @@ d3.json("us.json", function(error, us) {
           $('.heatgrid_year').html(selectedYear);
         }
 
-<<<<<<< HEAD
-        // function flipTiles() {
-        //   var oldSide = d3.select('#heatgrid').attr('class'),
-        // 		newSide = '';
-        // 
-        // 	if (oldSide == 'front') {
-        // 		newSide = 'back';
-        // 	} else {
-        // 		newSide = 'front';
-        // 	}
-        // 
-        // 	var flipper = function(r, c, side) {
-        // 		return function() {
-        // 			var sel = '#r' + r + 'c' + c,
-        // 				rotateY = 'rotateY(180deg)';
-        // 
-        // 			if (side === 'back') {
-        // 				rotateY = 'rotateY(0deg)';
-        // 			}
-        // 			// if (browser.browser === 'Safari' || browser.browser === 'Chrome') {
-        // 				d3.select(sel).style('-webkit-transform', rotateY);
-        // 			// } else {
-        // 			// 	d3.select(sel).select('.' + oldSide).classed('hidden', true);
-        // 			// 	d3.select(sel).select('.' + newSide).classed('hidden', false);
-        // 			// }
-        // 
-        // 		};
-  	    //    };
-        // 
-        // 	for (var c = 0; c < 13; c++) {
-        // 		for (var r = 0; r < 6; r++) {
-        // 			var side = d3.select('#heatgrid').attr('class');
-        // 			setTimeout(flipper(r, c, side), (c * 20) + (r * 20) + (Math.random() * 100));
-        // 		}
-        // 	}
-        // 	d3.select('#heatgrid').attr('class', newSide);
-        // }
-=======
->>>>>>> weikaizh/develop
         heatUpdate(2005,60);
         
         function clicked(d) {
