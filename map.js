@@ -3,10 +3,10 @@ d3.json("us.json", function(error, us) {
 
   d3.json("pollution_data.json", function(error, pollutant) {
     if (error) throw error;
-    
+
     d3.csv("pollution_data_monthly.csv", function(error, heatData) {
       if (error) throw error;
-      
+
       states = {"1":"Alabama", "2":"Alaska", "4":"Arizona", "5":"Arkansas", "6":"alifornia", "8":"Colorado", "9":"Connecticut", "10":"Delaware", "11":"District of Columbia", "12":"Florida", "13":"Georgia", "15":"Hawaii", "16":"Idaho", "17":"Illinois", "18":"Indiana", "19":"Iowa", "20":"Kansas", "21":"Kentucky", "22":"Louisiana", "23":"Maine", "24":"Maryland", "25":"Massachusetts", "26":"Michigan", "27":"Minnesota", "28":"Mississippi", "29":"Missouri", "30":"Montana", "31":"Nebraska", "32":"Nevada", "33":"New Hampshire", "34":"New Jersey", "35":"New Mexico", "36":"New York", "37":"North Carolina", "38":"North Dakota", "39":"Ohio", "40":"Oklahoma", "41":"Oregon", "42":"Pennsylvania", "44":"Rhode Island", "45":"South Carolina", "46":"South Dakota", "47":"Tennessee", "48":"Texas", "49":"Utah", "50":"Vermont", "51":"Virginia", "53":"Washington", "54":"West Virginia", "55":"Wisconsin", "56":"Wyoming"};
       $("#states").change(function(){
       	stateCode = $( "#states" ).val();
@@ -14,12 +14,12 @@ d3.json("us.json", function(error, us) {
       	console.log(stateName);
       	$("#headline_tag").find("h1").html(getStateName(stateCode));
       	$('.linegraph_title').html(getStateName(stateCode));
-      });  
+      });
 
       function getStateName(stateCode){
       	return states[stateCode];
       }
-      
+
       $.getJSON("pollution_data.json", function(data){
           d3.select("#states").on("input", function() {
               updateLineChart(parseInt(this.value));
@@ -65,12 +65,12 @@ d3.json("us.json", function(error, us) {
                           sum += Number(value.pollutant.so2);
                           //console.log(key, value.pollutant.so2);
                           break;
-                  }             
+                  }
               });
               return sum/count;
           }
           //Wrap data
-          function pollutants(){   
+          function pollutants(){
               return[
                   {
                       values:co,
@@ -253,8 +253,7 @@ d3.json("us.json", function(error, us) {
       function update(year) {
         colorMap = d3.scale.linear()
                    .domain([-1, -0.5, 0.5, 10])
-                  //  .range(['#31a354', '#F6F7B9', '#d6616b']);
-                  .range(['#31a354', '#F6F7B9','#d6616b', 'black']);
+                  .range(['#62b08d', '#F6F7B9','#d6616b', 'black']);
 
         g.selectAll("g").remove();
 
@@ -346,10 +345,10 @@ d3.json("us.json", function(error, us) {
       	d3.select('#heatgrid').attr('class', newSide);
       }
       heatUpdate(2005,60);
-      
+
       function clicked(d) {
         console.log(d);
-        
+
         selectedState = d.id;
         heatUpdate(selectedYear, selectedState);
 
