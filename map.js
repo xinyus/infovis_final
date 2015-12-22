@@ -51,7 +51,6 @@ d3.json("us.json", function(error, us) {
             $("#state_tag").html(getStateName(stateCode));
           	$('.linegraph_title').html(getStateName(stateCode));
 
-            
             d3.select('#chart1').select('svg').remove();
             var co=[],
             no2=[],
@@ -70,27 +69,21 @@ d3.json("us.json", function(error, us) {
                     switch(paraName){
                         case "co":
                             sum += Number(value.pollutant.co);
-                            //console.log(key, value.pollutant.co);
                             break;
                         case "no2":
                             sum += Number(value.pollutant.no2);
-                            //console.log(key, value.pollutant.no2);
                             break;
                         case "ozone":
                             sum += Number(value.pollutant.ozone);
-                            //console.log(key, value.pollutant.ozone);
                             break;
                         case "pm25":
                             sum += Number(value.pollutant.pm25);
-                            //console.log(key, value.pollutant.pm25);
                             break;
                         case "pm10":
                             sum += Number(value.pollutant.pm10);
-                            //console.log(key, value.pollutant.pm10);
                             break;
                         case "so2":
                             sum += Number(value.pollutant.so2);
-                            //console.log(key, value.pollutant.so2);
                             break;
                     }             
                 });
@@ -151,7 +144,6 @@ d3.json("us.json", function(error, us) {
 
             if (stateCode === 0){
                 for(i=2005; i<= 2014; i++) {
-                    //console.log(i, calcAve("co",i));
                     co.push({x:i, y: calcAve("co", i)});
                     no2.push({x:i, y: calcAve("no2", i)});
                     ozone.push({x:i, y: calcAve("ozone", i)});
@@ -161,7 +153,6 @@ d3.json("us.json", function(error, us) {
                 }
             } else {
                 for(i=2005; i<= 2014; i++) {
-                    //standard.push({x:i, y:0});
                     co.push({x:i, y: data[i][stateCode].pollutant.co});
                     ozone.push({x:i, y: data[i][stateCode].pollutant.ozone});
                     no2.push({x:i, y: data[i][stateCode].pollutant.no2});
@@ -180,12 +171,6 @@ d3.json("us.json", function(error, us) {
                         useInteractiveGuideline: true
                     })
                 ;
-                // chart sub-models (ie. xAxis, yAxis, etc) when accessed directly, return themselves, not the parent chart, so need to chain separately
-                // chart.xAxis
-                    //.axisLabel("Year")
-                    // .tickFormat(d3.format(',.1f'))
-                    // .staggerLabels(true)
-                // ;
                 chart.yAxis
                     .axisLabel('Ratio to National Standard')
                     .tickFormat(d3.format('%'));
@@ -193,8 +178,6 @@ d3.json("us.json", function(error, us) {
                 var svg = d3.select('#chart1').append('svg')
                     .datum(pollutants())
                     .call(chart);
-                // d3.select(".nv-legendWrap")
-                //     .attr("transform", "translate(90,340)");
                 nv.utils.windowResize(chart.update);
                 return chart;
             });//add chart callback ends
@@ -235,7 +218,11 @@ d3.json("us.json", function(error, us) {
 
         var g = svg.append("g");
 
+<<<<<<< HEAD
         var margin = { top: 70, right: 0, bottom: 100, left: 0 },
+=======
+        var margin = { top: 70, right: 0, bottom: 100, left: 30 },
+>>>>>>> weikaizh/develop
                  heatWidth = 650 - margin.left - margin.right,
                  heatHeight = 450 - margin.top - margin.bottom,
                  gridSize = Math.floor(heatWidth / 12),
@@ -271,9 +258,14 @@ d3.json("us.json", function(error, us) {
         var color = ['#62b08d', '#F6F7B9', '#d6616b', 'black'];
         var colorId = [-1, -0.75, -0.5, -0.25, 0, 0.25, 1, 2];
         colorMap = d3.scale.linear()
+<<<<<<< HEAD
                    .domain([-1, -0.5, 0.5, 10])
                   //  .range(['#31a354', '#F6F7B9', '#d6616b']);
                   .range(color);
+=======
+                     .domain([-1, -0.5, 0.5, 10])
+                     .range(color);
+>>>>>>> weikaizh/develop
         
         var legend = svg.selectAll(".legend")
               .data([].concat(colorId), function(d) { return d; });
@@ -323,13 +315,11 @@ d3.json("us.json", function(error, us) {
 
         d3.select("#timeSlider").on("input", function() {
           update(parseInt(this.value));
-          // heatUpdate();
         });
 
         function update(year) {
           colorMap = d3.scale.linear()
                      .domain([-1, -0.5, 0.5, 10])
-                    //  .range(['#31a354', '#F6F7B9', '#d6616b']);
                     .range(['#62b08d', '#F6F7B9','#d6616b', 'black']);
 
           g.selectAll("g").remove();
@@ -378,12 +368,15 @@ d3.json("us.json", function(error, us) {
 
         function heatUpdate(heatYear, heatStateId){
           heatgrid.selectAll(".tile").remove();
+<<<<<<< HEAD
 
           // if (side === 'front') {
         	// 	side = 'back';
         	// } else {
         	// 	side = 'front';
         	// }
+=======
+>>>>>>> weikaizh/develop
 
           heatgrid.selectAll(".tile")
              .data(heatData)
@@ -405,11 +398,10 @@ d3.json("us.json", function(error, us) {
                }})
              .filter(function(d){return !(d.year == heatYear && d.state == heatStateId);})
              .remove();
-          // flipTiles();
-          //update title
           $('.heatgrid_year').html(selectedYear);
         }
 
+<<<<<<< HEAD
         // function flipTiles() {
         //   var oldSide = d3.select('#heatgrid').attr('class'),
         // 		newSide = '';
@@ -446,6 +438,8 @@ d3.json("us.json", function(error, us) {
         // 	}
         // 	d3.select('#heatgrid').attr('class', newSide);
         // }
+=======
+>>>>>>> weikaizh/develop
         heatUpdate(2005,60);
         
         function clicked(d) {

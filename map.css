@@ -41,14 +41,18 @@ form {
 #slider {
     width: 500px;
     margin: auto;
-      /*position:fixed;*/
+    margin-bottom: 50px;
 }
 
 #slider-label {
     width: 550px;
     margin-left: -24px;
 <<<<<<< HEAD
+<<<<<<< HEAD
     margin-top:-10px;
+=======
+    margin-top: -10px;
+>>>>>>> weikaizh/develop
 =======
     margin-top: -10px;
 >>>>>>> weikaizh/develop
@@ -59,6 +63,32 @@ form {
     margin-right: 30px;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+.tooltip {
+  position: absolute;
+  text-align: left;
+  width: 95px;
+  height: 40px;
+  padding: 8px;
+  margin-top: -20px;
+  font: 13px sans-serif;
+  color: gray;
+  background: white;
+  border: 1px solid lightgray;
+  pointer-events: none;
+}
+
+.tooltip p {
+    margin-bottom: 9px;
+}
+
+.tooltip .state-name {
+    font-weight: bold;
+}
+
+>>>>>>> weikaizh/develop
 .fixed{
   position: fixed; 
   top: -0.5em; 
