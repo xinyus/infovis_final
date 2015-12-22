@@ -21,3 +21,12 @@ sub {
     vertical-align: sub;
     font-size: smaller;
 }
+
+#map {
+    width: 100%;
+    display: inline-block;
+}
+
+form {
+    margin-top: 3%;
+}

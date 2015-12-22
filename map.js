@@ -6,7 +6,11 @@ d3.json("us.json", function(error, us) {
 
     d3.csv("pollution_data_monthly.csv", function(error, heatData) {
       if (error) throw error;
+<<<<<<< HEAD
 
+=======
+      
+>>>>>>> weikaizh/develop
       d3.json("pollution_data.json", function(error, data){
         if (error) throw error;
 
@@ -254,7 +258,7 @@ d3.json("us.json", function(error, us) {
           colorMap = d3.scale.linear()
                      .domain([-1, -0.5, 0.5, 10])
                     //  .range(['#31a354', '#F6F7B9', '#d6616b']);
-                    .range(['#31a354', '#F6F7B9','#d6616b', 'black']);
+                    .range(['#62b08d', '#F6F7B9','#d6616b', 'black']);
 
           g.selectAll("g").remove();
 
