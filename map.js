@@ -6,11 +6,7 @@ d3.json("us.json", function(error, us) {
 
     d3.csv("pollution_data_monthly.csv", function(error, heatData) {
       if (error) throw error;
-<<<<<<< HEAD
 
-=======
-      
->>>>>>> weikaizh/develop
       d3.json("pollution_data.json", function(error, data){
         if (error) throw error;
 
