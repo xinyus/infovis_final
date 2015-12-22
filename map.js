@@ -14,7 +14,6 @@ d3.json("us.json", function(error, us) {
       var sliderScrollH = $( '#slider' ).position().top;
         $(window).bind('scroll', function() {
           var sliderHeight = sliderScrollH - 53;
-          console.log(sliderHeight);
                if ($(window).scrollTop() > sliderHeight) {
                    $('#slider').addClass('fixed');
                }
