@@ -4,7 +4,7 @@
 }
 
 #timeSlider {
-  margin: 20px 0 10px 20px;
+  margin: 20px 0 10px 0;
   width: 500px;
 }
 
@@ -23,10 +23,31 @@ sub {
 }
 
 #map {
-    width: 100%;
+    width: 960px !important;
+    height: 500px !important;
     display: inline-block;
 }
 
 form {
     margin-top: 3%;
+}
+
+#heatgrid {
+    width: 650px !important;
+    height: 450px !important;
+}
+
+#slider {
+    width: 500px;
+    margin: auto;
+}
+
+#slider-label {
+    width: 550px;
+    margin-left: -24px;
+}
+
+#slider label {
+    display: inline-block;
+    margin-right: 30px;
 }
