@@ -3,9 +3,126 @@ d3.json("us.json", function(error, us) {
 
   d3.json("pollution_data.json", function(error, pollutant) {
     if (error) throw error;
-    
+
     d3.csv("pollution_data_monthly.csv", function(error, heatData) {
       if (error) throw error;
+<<<<<<< HEAD
+
+      states = {"1":"Alabama", "2":"Alaska", "4":"Arizona", "5":"Arkansas", "6":"alifornia", "8":"Colorado", "9":"Connecticut", "10":"Delaware", "11":"District of Columbia", "12":"Florida", "13":"Georgia", "15":"Hawaii", "16":"Idaho", "17":"Illinois", "18":"Indiana", "19":"Iowa", "20":"Kansas", "21":"Kentucky", "22":"Louisiana", "23":"Maine", "24":"Maryland", "25":"Massachusetts", "26":"Michigan", "27":"Minnesota", "28":"Mississippi", "29":"Missouri", "30":"Montana", "31":"Nebraska", "32":"Nevada", "33":"New Hampshire", "34":"New Jersey", "35":"New Mexico", "36":"New York", "37":"North Carolina", "38":"North Dakota", "39":"Ohio", "40":"Oklahoma", "41":"Oregon", "42":"Pennsylvania", "44":"Rhode Island", "45":"South Carolina", "46":"South Dakota", "47":"Tennessee", "48":"Texas", "49":"Utah", "50":"Vermont", "51":"Virginia", "53":"Washington", "54":"West Virginia", "55":"Wisconsin", "56":"Wyoming"};
+      $("#states").change(function(){
+      	stateCode = $( "#states" ).val();
+      	stateName = getStateName(stateCode);
+      	console.log(stateName);
+      	$("#headline_tag").find("h1").html(getStateName(stateCode));
+      	$('.linegraph_title').html(getStateName(stateCode));
+      });
+
+      function getStateName(stateCode){
+      	return states[stateCode];
+      }
+
+      $.getJSON("pollution_data.json", function(data){
+          d3.select("#states").on("input", function() {
+              updateLineChart(parseInt(this.value));
+          });
+          function updateLineChart(stateCode) {
+              d3.select('#chart1').select('svg').remove();
+              var co=[],
+              no2=[],
+              ozone=[],
+              pm25=[],
+              so2=[],
+              pm10=[];
+          //Calculate national average
+          function calcAve(paraName, year){
+              var sum = 0;
+              var count = 0;
+              $.each(data[year], function(key, value){
+                  if(key+1>count){
+                      count = key+1;
+                  }
+                  switch(paraName){
+                      case "co":
+                          sum += Number(value.pollutant.co);
+                          //console.log(key, value.pollutant.co);
+                          break;
+                      case "no2":
+                          sum += Number(value.pollutant.no2);
+                          //console.log(key, value.pollutant.no2);
+                          break;
+                      case "ozone":
+                          sum += Number(value.pollutant.ozone);
+                          //console.log(key, value.pollutant.ozone);
+                          break;
+                      case "pm25":
+                          sum += Number(value.pollutant.pm25);
+                          //console.log(key, value.pollutant.pm25);
+                          break;
+                      case "pm10":
+                          sum += Number(value.pollutant.pm10);
+                          //console.log(key, value.pollutant.pm10);
+                          break;
+                      case "so2":
+                          sum += Number(value.pollutant.so2);
+                          //console.log(key, value.pollutant.so2);
+                          break;
+                  }
+              });
+              return sum/count;
+          }
+          //Wrap data
+          function pollutants(){
+              return[
+                  {
+                      values:co,
+                      key:"CO",
+                      color:"#54d3bd"
+                  },
+                  {
+                      values:no2,
+                      key:"NO2",
+                      color:"#699eff"
+                  },
+                  {
+                      values:ozone,
+                      key:"Ozone",
+                      color:"#d369ff"
+                  },
+                  {
+                      values:pm25,
+                      key:"PM2.5",
+                      color:"#ff7369"
+                  },
+                  {
+                      values:pm10,
+                      key:"PM10",
+                      color:"#ffb369"
+                  },
+                  {
+                      values:so2,
+                      key:"SO2",
+                      color:"#7eae94"
+                  }
+              ];
+          }
+          //calculate percentage
+          function calcRatio(paraName, paraValue){
+              switch (paraName){
+                  case "co":
+                      return(paraValue-9)/9;
+                  case "no2":
+                      return(paraValue-53)/53;
+                  case "so2":
+                      return(paraValue-75)/75;
+                  case "ozone":
+                      return(paraValue-0.075)/0.075;
+                  case "pm25":
+                      return(paraValue-35)/35;
+                  case "pm10":
+                      return(paraValue-150)/150;
+              }
+          }
+=======
       
       d3.json("pollution_data.json", function(error, data){
         if (error) throw error;
@@ -13,6 +130,7 @@ d3.json("us.json", function(error, us) {
         var selectedYear = 2005;
         var selectedState = 60;
         states = {"1":"Alabama", "2":"Alaska", "4":"Arizona", "5":"Arkansas", "6":"alifornia", "8":"Colorado", "9":"Connecticut", "10":"Delaware", "11":"District of Columbia", "12":"Florida", "13":"Georgia", "15":"Hawaii", "16":"Idaho", "17":"Illinois", "18":"Indiana", "19":"Iowa", "20":"Kansas", "21":"Kentucky", "22":"Louisiana", "23":"Maine", "24":"Maryland", "25":"Massachusetts", "26":"Michigan", "27":"Minnesota", "28":"Mississippi", "29":"Missouri", "30":"Montana", "31":"Nebraska", "32":"Nevada", "33":"New Hampshire", "34":"New Jersey", "35":"New Mexico", "36":"New York", "37":"North Carolina", "38":"North Dakota", "39":"Ohio", "40":"Oklahoma", "41":"Oregon", "42":"Pennsylvania", "44":"Rhode Island", "45":"South Carolina", "46":"South Dakota", "47":"Tennessee", "48":"Texas", "49":"Utah", "50":"Vermont", "51":"Virginia", "53":"Washington", "54":"West Virginia", "55":"Wisconsin", "56":"Wyoming"};
+>>>>>>> weikaizh/develop
 
         function getStateName(stateCode){
         	return states[stateCode];
@@ -198,6 +316,111 @@ d3.json("us.json", function(error, us) {
         var path = d3.geo.path()
             .projection(projection);
 
+<<<<<<< HEAD
+      maxNum = pollutant.yearMax[pollu_selected];
+
+      function update(year) {
+        colorMap = d3.scale.linear()
+                   .domain([-1, -0.5, 0.5, 10])
+                  .range(['#62b08d', '#F6F7B9','#d6616b', 'black']);
+
+        g.selectAll("g").remove();
+
+        g.append("g")
+            .attr("id", "states")
+          .selectAll("path")
+            .data(topojson.feature(us, us.objects.states).features)
+          .enter().append("path")
+            .attr("d", path)
+            .style("fill", function(d){
+              if (d.id < 70) {
+                return colorMap(pollutant[year][d.id.toString()].pollutant[pollu_selected]);
+              }})
+            .on("click", clicked);
+
+        d3.select("#timeSlider").property("value", year);
+        selectedYear = year;
+        heatUpdate(selectedYear, selectedState);
+      }
+
+      update(2005);
+
+      function heatUpdate(heatYear, heatStateId){
+        heatgrid.selectAll("rect").remove();
+
+        // if (side === 'front') {
+      	// 	side = 'back';
+      	// } else {
+      	// 	side = 'front';
+      	// }
+
+        heatgrid.selectAll(".tile")
+           .data(heatData)
+           .enter().append("rect")
+           .attr("class", "tile")
+           .attr("id", function(d) {return 'r' + d.pollutant + 'c' + d.month;})
+           .attr("x", function(d) { if ((d.year == heatYear) && (d.state == heatStateId) ) {return (d.month - 1) * gridSize; }})
+           .attr("y", function(d) { if ((d.year == heatYear) && (d.state == heatStateId) ) {return (d.pollutant - 1) * gridSize; }})
+           .attr("rx", 3)
+           .attr("ry", 3)
+           .attr("width", gridSize-3)
+           .attr("height",  gridSize-3)
+           .style("fill", function(d) {
+             if ((d.year == heatYear) && (d.state == heatStateId) ) {
+               if(d.value == -1) {
+                 return 'lightgray';
+               }
+               return colorMap(d.value);
+             }})
+           .filter(function(d){return !(d.year == heatYear && d.state == heatStateId);})
+           .remove();
+        // flipTiles();
+      }
+
+      function flipTiles() {
+        var oldSide = d3.select('#heatgrid').attr('class'),
+      		newSide = '';
+
+      	if (oldSide == 'front') {
+      		newSide = 'back';
+      	} else {
+      		newSide = 'front';
+      	}
+
+      	var flipper = function(r, c, side) {
+      		return function() {
+      			var sel = '#r' + r + 'c' + c,
+      				rotateY = 'rotateY(180deg)';
+
+      			if (side === 'back') {
+      				rotateY = 'rotateY(0deg)';
+      			}
+      			// if (browser.browser === 'Safari' || browser.browser === 'Chrome') {
+      				d3.select(sel).style('-webkit-transform', rotateY);
+      			// } else {
+      			// 	d3.select(sel).select('.' + oldSide).classed('hidden', true);
+      			// 	d3.select(sel).select('.' + newSide).classed('hidden', false);
+      			// }
+
+      		};
+	       };
+
+      	for (var c = 0; c < 13; c++) {
+      		for (var r = 0; r < 6; r++) {
+      			var side = d3.select('#heatgrid').attr('class');
+      			setTimeout(flipper(r, c, side), (c * 20) + (r * 20) + (Math.random() * 100));
+      		}
+      	}
+      	d3.select('#heatgrid').attr('class', newSide);
+      }
+      heatUpdate(2005,60);
+
+      function clicked(d) {
+        console.log(d);
+
+        selectedState = d.id;
+        heatUpdate(selectedYear, selectedState);
+=======
         var svg = d3.select("#map").append("svg")
             .attr("width", width)
             .attr("height", height)
@@ -274,6 +497,7 @@ d3.json("us.json", function(error, us) {
           selectedYear = year;
           heatUpdate(selectedYear, selectedState);
         }
+>>>>>>> weikaizh/develop
 
         update(2005);
 

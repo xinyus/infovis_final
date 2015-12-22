@@ -1,6 +1,6 @@
 // function drawLineGraph(stateCode){
 
-    
+
         //standard=[];
 
     $.getJSON("pollution_data.json", function(data){
@@ -8,7 +8,7 @@
         d3.select("#states").on("input", function() {
             updateLineChart(parseInt(this.value));
         });
-    
+
         function updateLineChart(stateCode) {
             d3.select('#chart1').select('svg').remove();
             var co=[],
@@ -51,13 +51,13 @@
                         sum += Number(value.pollutant.so2);
                         //console.log(key, value.pollutant.so2);
                         break;
-                }             
+                }
             });
             return sum/count;
         }
-        
+
         //Wrap data
-        function pollutants(){   
+        function pollutants(){
             return[
                 {
                     values:co,
@@ -165,19 +165,16 @@
             nv.utils.windowResize(chart.update);
 
             return chart;
-        
+
         });//add chart callback ends
 
         // console.log("update!");
         // console.log(stateCode)
 
-        // Update the SVG with the new data and call chart
-        d3.selectAll("svg").datum(pollutants).transition().duration(500).call(chart);
-        nv.utils.windowResize(chart.update);
     }
 
     updateLineChart(0);
-    
+
 
 
     });//JSON ends

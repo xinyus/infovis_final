@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-/* http://meyerweb.com/eric/tools/css/reset/ 
+/* http://meyerweb.com/eric/tools/css/reset/
    v2.0 | 20110126
    License: none (public domain)
 */
@@ -14,8 +14,8 @@ b, u, i, center,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
 	margin: 0;
@@ -26,7 +26,7 @@ time, mark, audio, video {
 	vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
+article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
@@ -90,17 +90,17 @@ h1{text-transform: none; font-weight: 200}
 ul, li {list-style-type: none;}*/
 
 ::selection {
-    background:#ff6868; 
+    background:#ff6868;
     color:white;
 }
 
 ::-moz-selection {
-    background:#ff6868; 
+    background:#ff6868;
     color:white;
 }
 
 ::-webkit-selection {
-    background:#ff6868; 
+    background:#ff6868;
     color:white;
 }
 
@@ -136,9 +136,9 @@ ul, li {list-style-type: none;}*/
 
 header {margin: 0; padding: 0;}
 
-#main-header {position: relative; 
-	width: 100%; height: auto; 
-	z-index: 1000; 
+#main-header {position: relative;
+	width: 100%; height: auto;
+	z-index: 1000;
 	margin: 0;
 }
 
@@ -164,16 +164,16 @@ header {margin: 0; padding: 0;}
 	padding-left: 6em;
 }
 .nav_links{
-	position:absolute; 
+	position:absolute;
 	right:0; top:1em;
 }
 
 #navigation li {
 	float: left;
-	padding: 0.5em 0.5em; 
+	padding: 0.5em 0.5em;
 }
 #navigation li:first-child {
-	margin-left: 0; 
+	margin-left: 0;
 	border: none;
 }
 
@@ -190,7 +190,7 @@ header {margin: 0; padding: 0;}
 	text-shadow: 1px 1px 1px #2a2a2a;
 }
 #navigation li a:hover, #navigation li a:active, #navigation li a:focus{
-	color: #ff6868 !important; 
+	color: #ff6868 !important;
 /*	#ff8383*/
 }
 
@@ -228,13 +228,13 @@ header {margin: 0; padding: 0;}
 /* ======================================
  * HOME DISPLAY
  * ====================================== */
- 
+
 
 
 .welcome{
 	position: absolute;
-	top: 40%; 
-	margin: 0 auto; 
+	top: 40%;
+	margin: 0 auto;
 	width: 100%; line-height: 6em;
 	text-align: center;
 	color: white;
@@ -323,7 +323,6 @@ footer{
 	padding-top: 1.3em;
 	padding-bottom: 2em;
 	/*background: url("img/Aquarium_dim.jpg"); background-size: cover; background-position: bottom;*/
-	background: rgba(0,0,0,0.5);
 	overflow: hidden;
 	color: gray;
 	font-size: 1.25em;
@@ -334,7 +333,7 @@ footer{
 footer p{
 	display: inline-block;
 }
- 
+
 
 
 .one_third{
@@ -382,17 +381,17 @@ footer p{
 .green:hover {background-color: #00c989;}
 
 /*.seed{
-	background: url("img/Grass_dim.jpg") no-repeat; 
+	background: url("img/Grass_dim.jpg") no-repeat;
 	background-position: top center;
-	background-attachment: fixed; 
-	background-size: cover; -moz-background-size: cover; -webkit-background-size: cover; -o-background-size: cover; 
+	background-attachment: fixed;
+	background-size: cover; -moz-background-size: cover; -webkit-background-size: cover; -o-background-size: cover;
 }*/
 .vis #vis_display{
 	background-color:rgba(232,233,216,0.4);
 	background-position: top center;
-	background-attachment: fixed !important; 
-	background-size: cover; -moz-background-size: cover; -webkit-background-size: cover; -o-background-size: cover; 
-	width: 100%; height: 200px; 
+	background-attachment: fixed !important;
+	background-size: cover; -moz-background-size: cover; -webkit-background-size: cover; -o-background-size: cover;
+	width: 100%; height: 200px;
 	position: relative;
 /*	z-index: 900;*/
 	background: none;
@@ -410,16 +409,16 @@ footer p{
 }
 .vis #region {
 /*	background-color:#50a387; */
-/*	background: url("img/Grass_dim.jpg") no-repeat; 
+/*	background: url("img/Grass_dim.jpg") no-repeat;
 	background-position: top center;
-	background-attachment: fixed !important; 
-	background-size: cover; -moz-background-size: cover; -webkit-background-size: cover; -o-background-size: cover; 
-*/	
+	background-attachment: fixed !important;
+	background-size: cover; -moz-background-size: cover; -webkit-background-size: cover; -o-background-size: cover;
+*/
 /*	background-color:rgba(244,241,236,0.5);*/
 	background-color:white;
 	background-position: center;
-	background-attachment: fixed; 
-	background-size: 100%; -moz-background-size: cover; -webkit-background-size: cover; -o-background-size: cover; 
+	background-attachment: fixed;
+	background-size: 100%; -moz-background-size: cover; -webkit-background-size: cover; -o-background-size: cover;
 	margin: 0 auto;
 	color: #a0a0a0;
 	clear: both;
@@ -434,13 +433,13 @@ footer p{
 
 
 .vis #season {
-	background-color:#ffffff; 
+	background-color:#ffffff;
 	background-position: top center;
-	background-attachment: fixed !important; 
-	background-size: cover; -moz-background-size: cover; -webkit-background-size: cover; -o-background-size: cover; 
-	width: 100%; ; 
+	background-attachment: fixed !important;
+	background-size: cover; -moz-background-size: cover; -webkit-background-size: cover; -o-background-size: cover;
+	width: 100%; ;
 	background-position: center;
-	background-size: cover; 
+	background-size: cover;
 	margin: 0 auto;
 	color: #a0a0a0;
 	clear: both;
@@ -451,7 +450,7 @@ footer p{
 	z-index: 901;
 /*	background-color:rgba(232,233,216,0.4);
 	color: white;
-	background-size: cover; 
+	background-size: cover;
 	position: relative;*/
 /*	margin: 0 auto;
 	color: white;
@@ -462,14 +461,14 @@ footer p{
 	padding-top: 0;*/
 }
 .vis #process{
-/*	background: url("img/cultureshock_bg.jpg") no-repeat; 
+/*	background: url("img/cultureshock_bg.jpg") no-repeat;
 	background-position: top center;
-	background-attachment: fixed !important; 
-	background-size: cover; -moz-background-size: cover; -webkit-background-size: cover; -o-background-size: cover; 
+	background-attachment: fixed !important;
+	background-size: cover; -moz-background-size: cover; -webkit-background-size: cover; -o-background-size: cover;
 	*/
 	background-color:white;
 	color: gray;
-	width: 100%; 
+	width: 100%;
 	position: relative;
 	overflow: hidden;
 	z-index: 0;
@@ -560,8 +559,8 @@ h2{font-size: 1.9em}
 	margin-bottom: 5em;
 }
 .former:after{
-	content: " "; border: solid 1px white; 
-	display: block; 
+	content: " "; border: solid 1px white;
+	display: block;
 	width: 2em; margin: 0.8em auto 0.6em auto;
 }
 .one_third>p.main_text{
@@ -577,7 +576,7 @@ footer p{display: block; font-size: 1em}
 }
 
 @media screen and (max-width: 480px) {
-	
+
 #navigation ul li a{font-size: 1.5em;}
 .homequote{font-size : 2em;}
 .caption{font-size: 1.5em;}
