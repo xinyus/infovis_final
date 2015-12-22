@@ -116,7 +116,7 @@
 <div id= "vis_display">
 <div style="z-index: -999; position: fixed; top: 0"></div>
 	<div class="welcome">
-	<h1 class="homequote" style="color: #00c989;">Visualizing Air Quality in U.S.</h1>
+	<h1 class="homequote" style="color: #96cab3;">Visualizing Air Quality in U.S.</h1>
 	<p class="caption" style = "color: #a0a0a0; font-size: 1.5em" >Xinyu Sheng, Weikai Zhang, Mengtian Zhang</p>
 	
 	</div>
@@ -171,7 +171,20 @@ Cras mattis consectetur purus sit amet fermentum. Lorem ipsum dolor sit amet, co
 	</div>
 
 <div id="map"></div>
-
+<form id="pollutant-select">
+  <input type="radio" name="pollutant" value="co" checked>CO
+  <br>
+  <input type="radio" name="pollutant" value="no2">NO<sub>2</sub>
+  <br>
+	<input type="radio" name="pollutant" value="ozone">Ozone
+  <br>
+	<input type="radio" name="pollutant" value="pm10">PM<sub>10</sub>
+  <br>
+	<input type="radio" name="pollutant" value="pm25">PM<sub>2.5</sub>
+  <br>
+	<input type="radio" name="pollutant" value="so2">SO<sub>2</sub>
+  <br>
+</form>
 </div>
 </section> 
 
@@ -197,7 +210,7 @@ Curabitur blandit tempus porttitor. Donec ullamcorper nulla non metus auctor fri
 	</div>
 </div>
 <div class="two_third">
-	<div id="heatgrid" class="front"></div>
+	<div id="heatgrid" class="front" style="margin:auto; width:70%;"></div>
 </div>
 
  </div>

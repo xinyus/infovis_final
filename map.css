@@ -16,3 +16,8 @@
   stroke-linecap: round;
   pointer-events: none;
 }
+
+sub { 
+    vertical-align: sub;
+    font-size: smaller;
+}
