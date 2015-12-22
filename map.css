@@ -41,7 +41,7 @@ form {
 #slider {
     width: 500px;
     margin: auto;
-      /*position:fixed;*/
+    margin-bottom: 50px;
 }
 
 #slider-label {
