@@ -340,7 +340,7 @@ d3.json("us.json", function(error, us) {
             div
                 .html('<p class="state-name">' + states[d.id.toString()] + '<\p><p>' + tooltipPollutant[pollu_selected] + "  =  " + pollutant[selectedYear][d.id.toString()].pollutant[pollu_selected] + "</p>")
                 .style("left", String(d3.event.pageX - 34) + "px")
-                .style("top", String(d3.event.pageY - 1010) + "px");
+                .style("top", String(d3.event.pageY - 1310) + "px");
           }
 
           function mouseout() {
