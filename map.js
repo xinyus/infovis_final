@@ -202,8 +202,6 @@ d3.json("us.json", function(error, us) {
         var arrPollutant = ["CO", "NO\u2082", "O\u2083", "PM\u2081\u2080", "PM\u2082.\u2085", "SO\u2082"];
         var arrMonth = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"];
 
-
-
         var projection = d3.geo.albersUsa()
             .scale(1070)
             .translate([width / 2, height / 2]);
